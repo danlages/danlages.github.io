@@ -27,9 +27,12 @@ url: "" # the base hostname & protocol for your site, e.g. http://dlages.com
 github_username:  danlages
 
 # Build settings
-theme: Minima
+theme: minima
 plugins:
   - jekyll-feed
+
+# Disable live reload to avoid compatibility issues
+livereload: false
 
 # Exclude from processing.
 # The following items will not be processed, by default.
