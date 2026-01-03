@@ -8,9 +8,9 @@
   </li>
   {%- endif -%}
   {%- if site.linkedin_username -%}
-  <<li>
+  <li>
     <a href="https://uk.linkedin.com/in/{{ site.linkedin_username | cgi_escape | escape }}">
-      <svg class="svg-icon"><use xlink:href="{{ '/assets/minima-social-icons.svg#likedin' | relative_url }}"></use></svg>
+      <svg class="svg-icon"><use xlink:href="{{ '/assets/minima-social-icons.svg#linkedin' | relative_url }}"></use></svg>
       <span class="username">{{ site.linkedin_username | escape }}</span>
     </a>
   </li>
