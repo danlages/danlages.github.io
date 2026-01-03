@@ -4,4 +4,4 @@ title: About
 permalink: /about/
 ---
 
-An iOS Engineer. 
+Senior iOS Engineer at Just Eat Takeaway. 
