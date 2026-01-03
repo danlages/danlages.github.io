@@ -63,3 +63,26 @@
   // Initial check
   handleScroll();
 })();
+
+// Hamburger menu toggle
+(function() {
+  'use strict';
+  
+  const menuToggle = document.getElementById('menuToggle');
+  const siteNav = document.getElementById('siteNav');
+  
+  if (menuToggle && siteNav) {
+    menuToggle.addEventListener('click', function() {
+      menuToggle.classList.toggle('active');
+      siteNav.classList.toggle('active');
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+      if (!event.target.closest('.site-header')) {
+        menuToggle.classList.remove('active');
+        siteNav.classList.remove('active');
+      }
+    });
+  }
+})();
