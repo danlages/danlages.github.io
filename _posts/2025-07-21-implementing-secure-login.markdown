@@ -1,15 +1,15 @@
 ---
 layout: post
 title:  "Implementing an intuitive and secure login method within an agile engineering environment"
-date:   2025-07-21 10:00:00 +0100
-categories: authentication ios agile
+date:   2025-01-03 10:00:00 +0100
+categories: authentication
 ---
 
 As with any platform, login is a crucial part of the user journey, allowing them to enjoy a more personalized ordering experience. Optimising this flow such that it is more secure and easy to use is a key undertaking and one that has been achieved with the rollout of the Passwordless Authentication feature.
 
 With the new flow, we are removing the need to login with passwords, leveraging email verification. We will require a user to use a one time password in order to complete their login journey. This article will explain the processes adopted for the implementation of this feature in an agile development environment, with insights into how to work within a team to deliver a new feature of this scale.
 
-![The new JustEatTakeaway login screen](/assets/images/posts/login-screen.jpg)
+![The new JustEatTakeaway login screen]({{ "/assets/images/posts/login-screen.jpg" | relative_url }})
 *The new JustEatTakeaway login screen*
 
 ## Plan
