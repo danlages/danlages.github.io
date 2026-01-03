@@ -50,6 +50,32 @@
   transform: translateY(0);
 }
 
+/* Site header and navigation alignment */
+.site-header .wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-title {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #424242;
+  font-weight: 500;
+}
+
+.site-title img {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.site-nav {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
 /* Hamburger menu styles */
 .menu-icon {
   display: none;
