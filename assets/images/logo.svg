@@ -4,12 +4,12 @@
   
   <!-- DL Monogram - Overlapping design with white L (larger scale) -->
   <g transform="translate(256, 256) scale(1.4)">
-    <!-- D - solid curved shape (black) -->
-    <path d="M -90 -120 L -90 120 Q 60 120, 60 0 Q 60 -120, -90 -120 Z" 
+    <!-- D - solid curved shape (even rounder) -->
+    <path d="M -90 -120 L -90 120 Q 95 120, 95 0 Q 95 -120, -90 -120 Z" 
           fill="#000000"/>
     
-    <!-- L - vertical and horizontal bars (white, taller vertical stem) -->
+    <!-- L - vertical and horizontal bars (white, horizontal stem moved down) -->
     <rect x="-80" y="-120" width="45" height="240" fill="#FFFFFF"/>
-    <rect x="-80" y="70" width="165" height="45" fill="#FFFFFF"/>
+    <rect x="-80" y="85" width="165" height="45" fill="#FFFFFF"/>
   </g>
 </svg>
