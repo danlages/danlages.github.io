@@ -9,7 +9,7 @@ As with any platform, login is a crucial part of the user journey, allowing them
 
 With the new flow, we are removing the need to login with passwords, leveraging email verification. We will require a user to use a one time password in order to complete their login journey. This article will explain the processes adopted for the implementation of this feature in an agile development environment, with insights into how to work within a team to deliver a new feature of this scale.
 
-![The new JustEatTakeaway login screen]({{ "/assets/images/posts/login-screen.jpg" | relative_url }})
+![The new JustEatTakeaway login screen]({{ "/assets/images/posts/login-screen.png" | relative_url }})
 *The new JustEatTakeaway login screen*
 
 ## Plan
