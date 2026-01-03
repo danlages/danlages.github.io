@@ -60,11 +60,12 @@
   border: 2px solid #424242;
   border-radius: 50%;
   position: relative;
-  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 6px;
+  order: -1;
+  margin-right: 15px;
 }
 
 .menu-icon span {
@@ -84,16 +85,21 @@
   transform: translateY(4px);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 600px) {
   .menu-icon {
     display: flex;
+  }
+
+  .wrapper {
+    display: flex;
+    align-items: center;
   }
 
   .site-nav {
     display: none;
     position: absolute;
     top: 100%;
-    right: 0;
+    left: 0;
     background-color: #fdfdfd;
     border: 1px solid #e8e8e8;
     border-radius: 5px;
