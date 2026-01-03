@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dan Lages - Test Preview</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    }
+
+    /* Hero Header Styles */
+    .hero-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 50vh;
+      background-image: url('assets/images/header-bg.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+      z-index: 10;
+    }
+
+    .hero-overlay {
+      position: relative;
+      text-align: center;
+      color: white;
+      z-index: 2;
+      padding: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    }
+
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin: 0 0 10px 0;
+      letter-spacing: 2px;
+    }
+
+    .hero-description {
+      font-size: 1.5rem;
+      font-weight: 300;
+      margin: 0;
+      opacity: 0.95;
+    }
+
+    .hero-header.fade-out {
+      opacity: 0;
+      transform: translateY(-20px);
+      pointer-events: none;
+    }
+
+    .hero-header.hidden {
+      display: none;
+    }
+
+    .content {
+      max-width: 800px;
+      margin: 0 auto;
+      margin-top: 50vh;
+      padding: 40px 20px;
+      line-height: 1.6;
+      background-color: #fdfdfd;
+      position: relative;
+      z-index: 20;
+    }
+
+    .content h1 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .content p {
+      margin-bottom: 15px;
+      color: #666;
+    }
+
+    /* Post list styles */
+    .post-list-heading {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .post-list {
+      list-style: none;
+      margin-left: 0;
+      padding-left: 0;
+    }
+
+    .post-list > li {
+      margin-bottom: 30px;
+    }
+
+    .post-meta {
+      font-size: 14px;
+      color: #828282;
+    }
+
+    .post-list h3 {
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+
+    .post-link {
+      display: block;
+      font-size: 24px;
+      text-decoration: none;
+      color: #111;
+    }
+
+    .post-link:hover {
+      text-decoration: underline;
+    }
+
+    .post-content {
+      margin-top: 15px;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .post-content p {
+      margin-bottom: 15px;
+    }
+
+    /* Sticky navigation */
+    .sticky-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background-color: #fdfdfd;
+      border-bottom: 1px solid #e8e8e8;
+      opacity: 0;
+      transform: translateY(-100%);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .sticky-nav.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .sticky-nav .site-header {
+      border: none;
+      min-height: 56px;
+      padding: 0;
+    }
+
+    /* Navigation styles */
+    .hero-nav {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 3;
+    }
+
+    .site-header {
+      border: none;
+      background-color: transparent;
+      padding: 15px 0;
+    }
+
+    .site-header .wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .site-title {
+      font-size: 26px;
+      font-weight: 300;
+      color: white !important;
+      text-decoration: none;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    }
+
+    .sticky-nav .site-title {
+      color: #424242 !important;
+      text-shadow: none;
+    }
+
+    .site-nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    .page-link {
+      color: white !important;
+      text-decoration: none;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    }
+
+    .sticky-nav .page-link {
+      color: #424242 !important;
+      text-shadow: none;
+    }
+
+    .page-link:hover {
+      text-decoration: underline;
+    }
+
+    @media screen and (max-width: 768px) {
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      
+      .hero-description {
+        font-size: 1.2rem;
+      }
+      
+      .hero-header {
+        height: 45vh;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero Header Image -->
+  <div class="hero-header" id="heroHeader">
+    <div class="hero-overlay">
+      <h1 class="hero-title">Dan Lages</h1>
+      <p class="hero-description">The blog of an iOS Engineer</p>
+    </div>
+  </div>
+
+  <nav class="sticky-nav" id="stickyNav">
+    <header class="site-header">
+      <div class="wrapper">
+        <a class="site-title" href="/">Dan Lages</a>
+        <nav class="site-nav">
+          <a class="page-link" href="/about/">About</a>
+        </nav>
+      </div>
+    </header>
+  </nav>
+
+  <div class="content">
+    <ul class="post-list">
+      <li>
+        <span class="post-meta">Jul 21, 2025</span>
+        <h3>
+          <a class="post-link" href="#">Implementing an intuitive and secure login method within an agile engineering environment</a>
+        </h3>
+        <div class="post-content">
+          <p>As with any platform, login is a crucial part of the user journey, allowing them to enjoy a more personalized ordering experience. Optimising this flow such that it is more secure and easy to use is a key undertaking and one that has been achieved with the rollout of the Passwordless Authentication feature.</p>
+          <p>With the new flow, we are removing the need to login with passwords, leveraging email verification. We will require a user to use a one time password in order to complete their login journey. This article will explain the processes adopted for the implementation of this feature in an agile development environment, with insights into how to work within a team to deliver a new feature of this scale.</p>
+          
+          <h2>Plan</h2>
+          <p>At a high level, this appears obvious but there are a lot of elements that go into the planning phase in a team that has many stakeholders and components.</p>
+          <p>In a full stack team, you may be collectively responsible for a range of components across different clients. For example, in this case, we mirrored the implementation of the passwordless flow on iOS and Android platforms. As such, aligning on these in the planning phase will speed up implementation.</p>
+          
+          <h2>Communication with Stakeholders</h2>
+          <p>The key to delivering any project is aligning with key stakeholders on progress. Typically, in mature engineering teams, this is often achieved through agile ceremonies. However, involving them in the planning process allows for more evidenced reasoning behind timescales.</p>
+          
+          <h2>Encouraging growth</h2>
+          <p>Often there may be a tendency to complete tickets quickly as an engineer with domain knowledge. If the situation allows, focus on sharing that knowledge. Actioning items in collaboration allows engineers to be exposed to new processes or tasks that they may perceive as requiring experience.</p>
+        </div>
+      </li>
+      <li>
+        <span class="post-meta">Jan 3, 2026</span>
+        <h3>
+          <a class="post-link" href="#">About Time</a>
+        </h3>
+        <div class="post-content">
+          <p>Hey all,</p>
+          <p>This blog will be technical in parts, a selection of thoughts in others. You can expect some notes on various technologies, workflows and projects.</p>
+          <p>Thanks for reading.</p>
+          <p>Dan</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <footer class="site-footer h-card">
+    <div class="wrapper">
+      <h2 class="footer-heading">Dan Lages</h2>
+      <div class="footer-col-wrapper">
+        <div class="footer-col footer-col-1">
+          <ul class="contact-list">
+            <li><a class="u-email" href="mailto:danlages65@gmail.com">danlages65@gmail.com</a></li>
+          </ul>
+        </div>
+        <div class="footer-col footer-col-2">
+          <ul class="social-media-list">
+            <li><a href="https://github.com/danlages">
+              <svg class="svg-icon" viewBox="0 0 16 16">
+                <path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+              </svg>
+              <span class="username">danlages</span>
+            </a></li>
+          </ul>
+        </div>
+        <div class="footer-col footer-col-3">
+          <p>iOS Engineer sharing thoughts on technology, workflows, and projects.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/scroll-animation.js"></script>
+
+</body>
+</html>
