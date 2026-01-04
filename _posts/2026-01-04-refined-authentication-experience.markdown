@@ -18,9 +18,9 @@ Security is only as strong as its weakest point. Many of the significant changes
 Behind the scenes, the application also leverages security features such as [Apple's DeviceCheck](https://developer.apple.com/documentation/devicecheck), ensuring device legitimacy with a device token that is checked against the API service. The result of these developments is a streamlined experience that improves both security and usability for our users while serving as a baseline for optimisations going forward. If you would like more insight, I have written [here](https://danlages.com/authentication/2026/01/03/implementing-secure-login.html) about the development journey of this flow and how it was achieved.
 
 <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
-  <img src="/assets/images/posts/legacy-login.png" alt="Legacy login screen" width="204">
-  <img src="/assets/images/posts/new-login.png" alt="New login screen" width="189">
-  <img src="/assets/images/posts/create-account.png" alt="Create account screen" width="189">
+  <img src="/assets/images/posts/legacy-login.jpg" alt="Legacy login screen" width="204">
+  <img src="/assets/images/posts/legacy-login-2.jpg" alt="Second iteration of the login screen" width="189">
+  <img src="/assets/images/posts/passwordless-login.jpg" alt="Passwordless login screen" width="189">
 </div>
 
 *The progression of the login and create account experience*
@@ -34,8 +34,8 @@ In a modular architecture, you'll often have an engineering team responsible for
 Behind the scenes, the passwordless login experience also paved the way for a modern architecture. The complete account flow, written fully in SwiftUI, allows users to create an account as part of the same passwordless experience. Recognising that the email is not registered, the flow will prompt the user to complete their account.
 
 <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
-  <img src="/assets/images/posts/legacy-create-account.png" alt="Legacy create account flow" width="240">
-  <img src="/assets/images/posts/new-complete-account.png" alt="New complete account flow" width="240">
+  <img src="/assets/images/posts/legacy-create-account.jpg" alt="Legacy create account screen" width="240">
+  <img src="/assets/images/posts/complete-account.jpg" alt="The complete account" width="240">
 </div>
 
 *Pictured is the legacy create account flow (left) and the new complete account flow (right), which is an extension of the passwordless screen.*
@@ -43,8 +43,8 @@ Behind the scenes, the passwordless login experience also paved the way for a mo
 The completion of this user journey facilitated the removal of all password flows. No longer do users need to set a new password. The guest checkout experience was also removed. Together with account deletion (also rewritten in SwiftUI), the result is a domain that is concentrated on a few delightful experiences that are modern in architecture and serve as a robust baseline for iteration.
 
 <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
-  <img src="/assets/images/posts/change-password.png" alt="Change password flow" width="226">
-  <img src="/assets/images/posts/account-deletion.png" alt="Account deletion screen" width="226">
+  <img src="/assets/images/posts/change-password.jpg" alt="Change password flow" width="226">
+  <img src="/assets/images/posts/account-deletion-confirmation.jpg" alt="Account deletion screen" width="226">
 </div>
 
 *Pictured is the now removed change password flow (left) and the SwiftUI based Account deletion screen.*
