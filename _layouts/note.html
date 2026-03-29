@@ -1,0 +1,23 @@
+---
+layout: default
+---
+
+<article class="post note tweet-note" data-note-card>
+  <header class="tweet-note__header">
+    <div class="tweet-note__avatar">
+      <img src="{{ '/assets/images/thought-avatar.jpg' | relative_url }}" alt="Thought" class="tweet-note__avatar-image">
+    </div>
+    <div class="tweet-note__author-wrap">
+      <p class="tweet-note__author">Thought</p>
+      <p class="tweet-note__meta">{{ page.date | date: '%B %d, %Y' }} </p>
+    </div>
+  </header>
+
+  <div class="tweet-note__body" data-note-body>
+    {{ content }}
+  </div>
+
+  <div class="tweet-note__preview-wrap" data-note-preview-wrap hidden></div>
+</article>
+
+<script src="{{ '/assets/js/note-preview.js' | relative_url }}" defer></script>

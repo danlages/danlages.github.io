@@ -404,3 +404,151 @@
   display: block !important;
 }
 
+/* Note layout (tweet-like) */
+.tweet-note {
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 16px;
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  background-color: #fdfdfd;
+}
+
+.tweet-note__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.tweet-note__avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #e8e8e8;
+  color: #424242;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 18px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.tweet-note__avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.tweet-note__author-wrap {
+  min-width: 0;
+}
+
+.tweet-note__author,
+.tweet-note__meta {
+  margin: 0;
+}
+
+.tweet-note__author {
+  color: #111;
+  font-weight: 600;
+}
+
+.tweet-note__meta {
+  color: #424242;
+  font-size: 14px;
+}
+
+.tweet-note__body {
+  color: #111;
+  line-height: 1.6;
+  margin-bottom: 12px;
+  word-break: break-word;
+}
+
+.tweet-note__body > *:last-child {
+  margin-bottom: 0;
+}
+
+.tweet-note__body a {
+  color: #2a7ae2;
+}
+
+.tweet-note__preview-wrap {
+  margin-top: 12px;
+}
+
+.tweet-note__preview {
+  display: block;
+  text-decoration: none;
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #fdfdfd;
+}
+
+.tweet-note__preview:hover {
+  text-decoration: none;
+}
+
+.tweet-note__preview-image {
+  display: none;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.tweet-note__preview-image.is-visible {
+  display: block;
+}
+
+.tweet-note__preview-content {
+  padding: 12px;
+}
+
+.tweet-note__preview-domain {
+  margin: 0 0 4px;
+  font-size: 12px;
+  color: #424242;
+  text-transform: lowercase;
+}
+
+.tweet-note__preview-title {
+  margin: 0 0 4px;
+  color: #111;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.tweet-note__preview-description {
+  margin: 0;
+  color: #424242;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.tweet-note.is-text-only {
+  border-radius: 16px;
+}
+
+.tweet-note.is-text-only .tweet-note__body {
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 600px) {
+  .tweet-note {
+    padding: 14px;
+    border-radius: 10px;
+  }
+
+  .tweet-note__avatar {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+}
+
