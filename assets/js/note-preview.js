@@ -124,11 +124,20 @@
     }
 
     const sourceText = (linkData.element.textContent || '').trim() || linkData.url.href;
-    const sourceTextNode = document.createElement('span');
-    sourceTextNode.textContent = sourceText;
-    linkData.element.replaceWith(sourceTextNode);
+    const hasCustomSourceTitle = sourceText !== linkData.url.href;
+
+    const sourceParent = linkData.element.parentElement;
+    linkData.element.remove();
+    if (
+      sourceParent &&
+      sourceParent.tagName === 'P' &&
+      sourceParent.textContent.trim() === ''
+    ) {
+      sourceParent.remove();
+    }
 
     const preview = createPreviewCard(linkData.url);
+    preview.title.textContent = sourceText;
     previewWrap.appendChild(preview.card);
     previewWrap.hidden = false;
 
@@ -136,7 +145,7 @@
       const metadata = await fetchMetadata(linkData.url);
       if (!metadata) return;
 
-      if (metadata.title) {
+      if (metadata.title && !hasCustomSourceTitle) {
         preview.title.textContent = metadata.title;
       }
 
