@@ -33,6 +33,25 @@
     image.alt = '';
     image.loading = 'lazy';
 
+    const imageFallback = document.createElement('div');
+    imageFallback.className = 'tweet-note__preview-image-fallback is-visible';
+    imageFallback.setAttribute('aria-hidden', 'true');
+
+    const icon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    icon.setAttribute('class', 'tweet-note__preview-image-fallback-icon');
+    icon.setAttribute('viewBox', '0 0 24 24');
+    icon.setAttribute('fill', 'none');
+    icon.setAttribute('stroke', 'currentColor');
+    icon.setAttribute('stroke-width', '1.8');
+    icon.setAttribute('stroke-linecap', 'round');
+    icon.setAttribute('stroke-linejoin', 'round');
+
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', 'm21.44 11.05-9.19 9.19a6 6 0 1 1-8.49-8.48l9.2-9.2a4 4 0 0 1 5.65 5.66l-9.2 9.19a2 2 0 1 1-2.82-2.83l8.48-8.48');
+
+    icon.appendChild(path);
+    imageFallback.appendChild(icon);
+
     const content = document.createElement('div');
     content.className = 'tweet-note__preview-content';
 
@@ -53,11 +72,13 @@
     content.appendChild(description);
 
     card.appendChild(image);
+    card.appendChild(imageFallback);
     card.appendChild(content);
 
     return {
       card,
       image,
+      imageFallback,
       title,
       description,
       domain
@@ -157,6 +178,7 @@
         const imageUrl = new URL(metadata.image, linkData.url.href).href;
         preview.image.src = imageUrl;
         preview.image.classList.add('is-visible');
+        preview.imageFallback.classList.remove('is-visible');
       }
     } catch (error) {
       // Keep fallback preview when metadata cannot be fetched.
