@@ -483,7 +483,9 @@
 
 .tweet-note__preview {
   display: flex;
-  align-items: stretch;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
   text-decoration: none;
   border: 1px solid #e8e8e8;
   border-radius: 12px;
@@ -497,11 +499,11 @@
 
 .tweet-note__preview-image {
   display: none;
-  width: 120px;
-  height: 120px;
+  width: 96px;
+  height: 96px;
   flex-shrink: 0;
   object-fit: cover;
-  border-right: 1px solid #e8e8e8;
+  border-radius: 8px;
 }
 
 .tweet-note__preview-image.is-visible {
@@ -510,14 +512,14 @@
 
 .tweet-note__preview-image-fallback {
   display: none;
-  width: 120px;
-  height: 120px;
+  width: 96px;
+  height: 96px;
   flex-shrink: 0;
-  border-right: 1px solid #e8e8e8;
   align-items: center;
   justify-content: center;
   color: #6b7280;
   background-color: #f5f5f5;
+  border-radius: 8px;
 }
 
 .tweet-note__preview-image-fallback-icon {
@@ -531,7 +533,8 @@
 
 .tweet-note__preview-content {
   flex: 1;
-  padding: 12px;
+  min-width: 0;
+  padding: 0;
 }
 
 .tweet-note__preview-domain {
@@ -576,13 +579,13 @@
   }
 
   .tweet-note__preview-image {
-    width: 96px;
-    height: 96px;
+    width: 84px;
+    height: 84px;
   }
 
   .tweet-note__preview-image-fallback {
-    width: 96px;
-    height: 96px;
+    width: 84px;
+    height: 84px;
   }
 
   .tweet-note__preview-image-fallback-icon {

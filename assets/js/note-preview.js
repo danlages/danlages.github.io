@@ -96,12 +96,68 @@
     return '';
   }
 
-  async function fetchMetadata(url) {
-    const endpoint = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(url.href);
-    const response = await fetch(endpoint, { method: 'GET' });
-    if (!response.ok) return null;
+  function getImageFallback(doc) {
+    const candidates = [
+      'meta[itemprop="image"]',
+      'link[rel="image_src"]',
+      'article img[src]',
+      'main img[src]',
+      'img[src]'
+    ];
 
-    const html = await response.text();
+    for (const selector of candidates) {
+      const node = doc.querySelector(selector);
+      if (!node) continue;
+
+      const value = (node.getAttribute('content') || node.getAttribute('href') || node.getAttribute('src') || '').trim();
+      if (value) return value;
+    }
+
+    return '';
+  }
+
+  async function fetchHtmlWithFallbacks(url) {
+    const target = url.href;
+    const endpoints = [
+      {
+        url: 'https://api.allorigins.win/raw?url=' + encodeURIComponent(target),
+        transform: (text) => text
+      },
+      {
+        url: 'https://api.allorigins.win/get?url=' + encodeURIComponent(target),
+        transform: (text) => {
+          try {
+            const parsed = JSON.parse(text);
+            return (parsed && parsed.contents) || '';
+          } catch (error) {
+            return '';
+          }
+        }
+      },
+      {
+        url: 'https://corsproxy.io/?' + encodeURIComponent(target),
+        transform: (text) => text
+      }
+    ];
+
+    for (const endpoint of endpoints) {
+      try {
+        const response = await fetch(endpoint.url, { method: 'GET' });
+        if (!response.ok) continue;
+
+        const body = await response.text();
+        const html = endpoint.transform(body);
+        if (html) return html;
+      } catch (error) {
+        continue;
+      }
+    }
+
+    return '';
+  }
+
+  async function fetchMetadata(url) {
+    const html = await fetchHtmlWithFallbacks(url);
     if (!html) return null;
 
     const parser = new DOMParser();
@@ -119,8 +175,10 @@
       ]),
       image: getMetaContent(doc, [
         'meta[property="og:image"]',
-        'meta[name="twitter:image"]'
-      ])
+        'meta[property="og:image:url"]',
+        'meta[name="twitter:image"]',
+        'meta[name="twitter:image:src"]'
+      ]) || getImageFallback(doc)
     };
   }
 
