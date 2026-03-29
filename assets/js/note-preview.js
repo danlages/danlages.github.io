@@ -108,9 +108,18 @@
     const previewWrap = note.querySelector('[data-note-preview-wrap]');
     if (!noteBody || !previewWrap) return;
 
+    if (note.dataset.previewEnhanced === 'true') return;
+
+    if (previewWrap.querySelector('.tweet-note__preview')) {
+      previewWrap.hidden = false;
+      note.dataset.previewEnhanced = 'true';
+      return;
+    }
+
     const linkData = getFirstPreviewableLink(noteBody);
     if (!linkData) {
       note.classList.add('is-text-only');
+      note.dataset.previewEnhanced = 'true';
       return;
     }
 
@@ -137,6 +146,8 @@
       }
     } catch (error) {
       // Keep fallback preview when metadata cannot be fetched.
+    } finally {
+      note.dataset.previewEnhanced = 'true';
     }
   }
 
