@@ -203,7 +203,6 @@
     }
 
     const sourceText = (linkData.element.textContent || '').trim() || linkData.url.href;
-    const hasCustomSourceTitle = sourceText !== linkData.url.href;
 
     const sourceParent = linkData.element.parentElement;
     linkData.element.remove();
@@ -224,7 +223,7 @@
       const metadata = await fetchMetadata(linkData.url);
       if (!metadata) return;
 
-      if (metadata.title && !hasCustomSourceTitle) {
+      if (metadata.title) {
         preview.title.textContent = metadata.title;
       }
 
