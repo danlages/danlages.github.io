@@ -123,6 +123,11 @@
       return;
     }
 
+    const sourceText = (linkData.element.textContent || '').trim() || linkData.url.href;
+    const sourceTextNode = document.createElement('span');
+    sourceTextNode.textContent = sourceText;
+    linkData.element.replaceWith(sourceTextNode);
+
     const preview = createPreviewCard(linkData.url);
     previewWrap.appendChild(preview.card);
     previewWrap.hidden = false;
