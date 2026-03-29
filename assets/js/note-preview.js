@@ -116,6 +116,34 @@
     return '';
   }
 
+  function escapeRegExp(value) {
+    return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  function getSourcePreviewParts(rawText, url) {
+    const hostname = url.hostname.replace(/^www\./, '');
+    const byLines = rawText
+      .split(/\n+/)
+      .map((part) => part.trim())
+      .filter(Boolean);
+
+    if (byLines.length > 1) {
+      const title = byLines[0];
+      const description = byLines.slice(1).join(' ').trim();
+      return { title, description };
+    }
+
+    const normalized = rawText.replace(/\s+/g, ' ').trim();
+    const withoutDomain = normalized
+      .replace(new RegExp('\\b' + escapeRegExp(hostname) + '\\b\\.?\\s*$', 'i'), '')
+      .trim();
+
+    return {
+      title: withoutDomain || normalized,
+      description: ''
+    };
+  }
+
   async function fetchHtmlWithFallbacks(url) {
     const target = url.href;
     const endpoints = [
@@ -202,7 +230,8 @@
       return;
     }
 
-    const sourceText = (linkData.element.textContent || '').trim() || linkData.url.href;
+    const rawSourceText = (linkData.element.innerText || linkData.element.textContent || '').trim() || linkData.url.href;
+    const sourcePreview = getSourcePreviewParts(rawSourceText, linkData.url);
 
     const sourceParent = linkData.element.parentElement;
     linkData.element.remove();
@@ -215,7 +244,10 @@
     }
 
     const preview = createPreviewCard(linkData.url);
-    preview.title.textContent = sourceText;
+    preview.title.textContent = sourcePreview.title || linkData.url.href;
+    if (sourcePreview.description) {
+      preview.description.textContent = sourcePreview.description;
+    }
     previewWrap.appendChild(preview.card);
     previewWrap.hidden = false;
 
